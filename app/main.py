@@ -15,3 +15,7 @@ async def post():
 @app.put('/')
 async def put():
     return {'message': 'put route'}
+
+@app.patch('/')
+async def put():
+    return {'message': 'patch route'}  
