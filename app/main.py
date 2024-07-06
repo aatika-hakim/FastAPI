@@ -18,4 +18,16 @@ async def put():
 
 @app.patch('/')
 async def put():
-    return {'message': 'patch route'}  
+    return {'message': 'patch route'} 
+
+@app.get("/item")
+async def item():
+    return {'message': 'setup route'}
+
+@app.get("/item/{item_id}")
+async def item(item_id: int):
+    return {'item': item_id}
+
+# Day-2
+
+
