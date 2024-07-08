@@ -1,6 +1,8 @@
 # Day 1
 from enum import Enum
 from fastapi import FastAPI
+from jose import jwt, JWTError
+from datetime import datetime, timedelta
 
 app = FastAPI()
 
@@ -47,3 +49,24 @@ async def get_car(car_names: Cars):
     
     if car_names.value == 'Mercedes':
         return {'car': car_names, 'message': "Happy driving"}
+
+#Day 2
+# FastAPI Authorization
+
+# in python we declare Constants Capital
+
+ALGORITHM = "HS256"
+SECRET_KEY = "secretkey1234567890"
+
+# to generate access token
+def create_access_token(subject: str, expires_delta: timedelta) -> str:
+    expiration = datetime.utcnow() + expires_delta
+    to_encode = {"sub": subject, "exp": expiration}
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+@app.get("/get_token")
+def get_token(name: str):
+    access_token_expiry = timedelta(minutes=10)
+    access_token = create_access_token(subject=name, expires_delta=access_token_expiry)
+    return {"access token": access_token}
