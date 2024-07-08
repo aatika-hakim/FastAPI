@@ -53,7 +53,7 @@ async def get_car(car_names: Cars):
 #Day 2
 # FastAPI Authorization
 
-# in python we declare Constants Capital
+# in python we declare Constants Capital Words
 
 ALGORITHM = "HS256"
 SECRET_KEY = "secretkey1234567890"
@@ -70,3 +70,14 @@ def get_token(name: str):
     access_token_expiry = timedelta(minutes=10)
     access_token = create_access_token(subject=name, expires_delta=access_token_expiry)
     return {"access token": access_token}
+
+# To decode access token
+def decode_access_token(token: str):
+    decoded_token = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+    return decoded_token
+
+# decode_access_token route 
+@app.get("/decode_token")
+def decode_token(token: str):
+    decoded_token = decode_access_token(token)
+    return {"decoded token": decoded_token}
