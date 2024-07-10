@@ -1,6 +1,6 @@
 # Day 1
 from enum import Enum
-from fastapi import FastAPI
+from fastapi import FastAPI, status
 from jose import jwt, JWTError
 from datetime import datetime, timedelta
 
@@ -85,18 +85,21 @@ def decode_token(token: str):
 
 
 ###### Response Status Codes  ######
-@app.post("/msg/", status_code=201) # 201 Successful Response
+@app.post("/msg/", status_code=status.HTTP_201_CREATED)
 async def msg_status(msg: str):
     return {"message": msg}
 
-@app.delete("/msg/{m}", status_code=204) # 204 no content
+@app.delete("/msg/{m}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_status(m: str):
     return m
 
-# @app.get("/status/{s}", status_code=301) # 301 Error: Moved Permanently
-# async def get_status(s: str):
-#     return s
-
-@app.get("/status/{s}", status_code=401) # 301 Error: Unauthorized
+@app.get("/status/{s}", status_code=status.HTTP_301_MOVED_PERMANENTLY)
 async def get_status(s: str):
     return s
+
+@app.get("/status_check/{status}", status_code=status.HTTP_401_UNAUTHORIZED)
+async def get_status(status: str):
+    return status
+
+
+
