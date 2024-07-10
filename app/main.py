@@ -51,7 +51,7 @@ async def get_car(car_names: Cars):
         return {'car': car_names, 'message': "Happy driving"}
 
 #Day 2
-# FastAPI Authorization
+###### FastAPI Authorization ###### 
 
 # in python we declare Constants Capital Words
 
@@ -81,3 +81,22 @@ def decode_access_token(token: str):
 def decode_token(token: str):
     decoded_token = decode_access_token(token)
     return {"decoded token": decoded_token}
+
+
+
+###### Response Status Codes  ######
+@app.post("/msg/", status_code=201) # 201 Successful Response
+async def msg_status(msg: str):
+    return {"message": msg}
+
+@app.delete("/msg/{m}", status_code=204) # 204 no content
+async def delete_status(m: str):
+    return m
+
+# @app.get("/status/{s}", status_code=301) # 301 Error: Moved Permanently
+# async def get_status(s: str):
+#     return s
+
+@app.get("/status/{s}", status_code=401) # 301 Error: Unauthorized
+async def get_status(s: str):
+    return s
