@@ -1,6 +1,7 @@
 # # Day 1
 # from enum import Enum
-from fastapi import FastAPI, status, Form
+from fastapi import Body, FastAPI, status, Form
+from pydantic import BaseModel
 # from jose import jwt, JWTError
 # from datetime import datetime, timedelta
 
@@ -104,7 +105,21 @@ app = FastAPI()
 
 ###### Form Fields  ######
 
-@app.get("/login/")
+# 1. it returns form data that will be multipart
+@app.post("/login/")
 async def login(username: str = Form(...), password: str = Form(...)):
     return {"username": username, "password": password}
 
+# 2.
+class User(BaseModel):
+    username: str
+    password: str
+
+@app.post("/login_data/")
+async def login_data(user: User):
+    return user
+
+# 3. it returns json
+@app.post("/login_data/")
+async def login_data(username: str = Body(...), password: str = Body(...)):
+    return username, password
