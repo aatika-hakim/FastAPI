@@ -135,3 +135,11 @@ async def file(file: UploadFile = File(...)):
     content = await file.read()
     return file.filename, content
 
+@app.post("/new_files/")
+async def new_files(file: bytes = File(...)):
+    return file
+
+
+
+
+
