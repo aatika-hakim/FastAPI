@@ -1,5 +1,5 @@
 # # Day 1
-# from enum import Enum
+from enum import Enum
 from fastapi import Body, FastAPI, File, UploadFile, status, Form
 from pydantic import BaseModel
 from jose import jwt
