@@ -139,7 +139,3 @@ async def file(file: UploadFile = File(...)):
 async def new_files(file: bytes = File(...)):
     return file
 
-
-
-
-
