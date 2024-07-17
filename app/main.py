@@ -1,6 +1,7 @@
 # # Day 1
 from enum import Enum
-from fastapi import Body, FastAPI, File, UploadFile, status, Form
+from typing import Optional
+from fastapi import Body, FastAPI, File, Query, UploadFile, status, Form
 from pydantic import BaseModel
 from jose import jwt
 from datetime import datetime, timedelta
@@ -138,4 +139,30 @@ async def file(file: UploadFile = File(...)):
 @app.post("/new_files/")
 async def new_files(file: bytes = File(...)):
     return file
+
+####### Query Parameters #########
+@app.get("/query/")
+async def query(
+    q: Optional[str] = Query(None, min_length=3),
+    start: int = Query(1, ge=1),
+    limit: Optional[int] = Query(10, le=100, gt=0),
+    ):
+    results = []
+    if q:
+        results.append(f"Searching for: {q}")
+        if start:
+            results.append(f"Starting from: {start}")
+            if limit:
+                results.append(f"Limiting to: {limit}")
+                return results
+            
+
+####### Query Parameters & String Validation #########
+
+@app.get("/hello")
+async def hello(query: str | None = Query(None, max_length = 12)):
+    results = {"items": [{"item_id": "Foo"}, {"item_id": "Car"}]}
+    if query:
+        results.update({"query": query})
+    return results
 
