@@ -166,3 +166,15 @@ async def hello(query: str | None = Query(None, max_length = 12)):
         results.update({"query": query})
     return results
 
+@app.get("/query1")
+async def read_query(q: list[str] = Query(["hello", "my_car"])):
+    result =  {"items": [{"item_id": "2"}, {"item_id": "Car"}]}
+    if q:
+        result.update({"query": q})
+    return result
+
+@app.get("/query_hidden")
+async def hidden_query_route(hidden_query: str | None = Query(None, include_in_schema = False)):
+    if hidden_query:
+        return {"hidden_query": hidden_query}
+    return {"hidden_query": "Not found"}
