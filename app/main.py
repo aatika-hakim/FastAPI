@@ -1,7 +1,7 @@
 # # Day 1
 from enum import Enum
 from typing import Optional
-from fastapi import Body, FastAPI, File, Query, UploadFile, status, Form
+from fastapi import Body, FastAPI, File, Path, Query, UploadFile, status, Form
 from pydantic import BaseModel
 from jose import jwt
 from datetime import datetime, timedelta
@@ -178,3 +178,15 @@ async def hidden_query_route(hidden_query: str | None = Query(None, include_in_s
     if hidden_query:
         return {"hidden_query": hidden_query}
     return {"hidden_query": "Not found"}
+
+###### Path Parameters & Numeric Validation ######
+@app.get("/items_validation/{item_id}")
+async def read_items_validation(
+    *, # tells that all the fields are required
+    item_id: int = Path(..., title= "Item id"), q: str | None = Query(None, alias="items_query"),):
+
+    results = {"item_id": item_id}
+    if q:
+        results.update({"query": q})
+    return results
+
