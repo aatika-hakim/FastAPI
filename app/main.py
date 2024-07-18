@@ -190,3 +190,22 @@ async def read_items_validation(
         results.update({"query": q})
     return results
 
+
+###### Body - Multiple parameters ######
+
+class ItemModel(BaseModel):
+    name: str
+    description: str
+    price: float
+    tax: float | None = None
+@app.post("/body_multiple/{items_id}")
+async def create_item(*, items_id: int = Path(..., title= "Items id", ge = 0, le = 120),
+                    q: str | None = None,
+                    item: ItemModel | None = None):
+    results = {"items_id": items_id}
+    
+    if q:
+        results.update({"query": q})
+        if item:
+            results.update({"item": item})
+        return results
