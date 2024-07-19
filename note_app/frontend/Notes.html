@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <link rel="stylesheet" href="Notes.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Notes App</h1>
+
+        <!-- Form to create a new note -->
+        <form id="createNoteForm" class="note-form">
+            <h2>Create New Note</h2>
+            <input type="text" id="title" placeholder="Title" required>
+            <textarea id="content" placeholder="Content" required></textarea>
+            <button type="submit">Create Note</button>
+        </form>
+
+        <!-- Container for displaying notes -->
+        <div id="notesContainer"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="Notes.js"></script>
+</body>
+</html>
