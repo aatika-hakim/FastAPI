@@ -1,0 +1,10 @@
+# .env
+
+
+# This is the connection string for the main container Database URL
+DATABASE_URL=postgresql://admin:my_password@postgres:5432/mart
+
+
+
+# This is the connection string for the test branch of Neon Database URL
+TEST_DATABASE_URL=postgresql://admin:7imN5RAlLxgO@ep-ancient-haze-a51vkgcs-pooler.us-east-2.aws.neon.tech/mart?sslmode=require

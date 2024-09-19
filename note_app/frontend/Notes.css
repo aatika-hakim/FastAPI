@@ -4,9 +4,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-        font-family: "Edu AU VIC WA NT Hand", cursive;
-        font-optical-sizing: auto;
-        font-style: bold;
+    font-family: cursive;
+    font-style: bold;
 }
 
 body {
@@ -139,7 +138,7 @@ button:hover {
     background-color: transparent;
     border-radius: 4px;
     border: 1px solid gray;
-    font-family: "Edu AU VIC WA NT Hand", cursive;
+    font-family: cursive;
     font-optical-sizing: auto;
     font-style: bold; 
 }
@@ -152,7 +151,7 @@ button:hover {
     background-color: transparent;
     border-radius: 4px;
     border: 1px solid white;
-       font-family: "Edu AU VIC WA NT Hand", cursive;
+       font-family: cursive;
         font-optical-sizing: auto;
         font-style: bold;
 }
@@ -167,7 +166,7 @@ button:hover {
     flex-wrap: wrap;
     border: 1px solid white;
     border-radius: 4px;
-       font-family: "Edu AU VIC WA NT Hand", cursive;
+       font-family: cursive;
         font-optical-sizing: auto;
         font-style: bold;
 }

@@ -8,7 +8,7 @@ app = FastAPI()
 # CORS (Cross-Origin Resource Sharing) middleware configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:5500"],  # Replace with your frontend URL during development
+    allow_origins=["http://127.0.0.1:5500"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH"],
     allow_headers=["*"],
@@ -106,6 +106,6 @@ async def update_note_title(note_id: int, new_title: str):
 async def archive_note(note_id: int):
     for existing_note in notes:
         if existing_note.id == note_id:
-            existing_note.archived = True  # Assuming an archived field is added dynamically
+            existing_note.archived = True 
             return existing_note
     raise HTTPException(status_code=404, detail="Note not found")
